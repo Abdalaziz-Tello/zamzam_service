@@ -312,4 +312,4 @@ async def drop_database(current_user: models.User = Depends(auth.get_current_use
     
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 10000))  # Get PORT from environment or default to 8000
-    uvicorn.run(app, host="0.0.0.0", port=port,reload=True)
+    uvicorn.run(app, host="0.0.1.1", port=port,reload=True)
