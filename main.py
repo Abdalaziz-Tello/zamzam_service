@@ -1,7 +1,10 @@
+import os
 from fastapi import FastAPI, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from datetime import timedelta
 from typing import List
+
+import uvicorn
 import models
 import schemas
 import auth
@@ -306,3 +309,7 @@ async def drop_database(current_user: models.User = Depends(auth.get_current_use
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=str(e)
         ) 
+    
+if __name__ == "__main__":
+    port = int(os.getenv("PORT", 8000))  # Get PORT from environment or default to 8000
+    uvicorn.run(app, host="0.0.0.0", port=port)
